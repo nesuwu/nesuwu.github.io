@@ -1,0 +1,229 @@
+/* Ustawienie koloru efektu świetlnego */
+:root {
+  --glow-color: #8f00ff;
+}
+
+/* Ustawienie stylu tła i marginesów dla całej strony */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-color: #000000;
+  background-image: linear-gradient(to bottom, #444444bf, #00000000);
+  background-size: 100% 100%;
+  background-position: top, bottom;
+  background-repeat: no-repeat;
+}
+
+/* Ustawienie stylu dla sekcji wprowadzenia */
+.intro-section {
+  background-color: rgba(68, 68, 68, 0.75);
+  margin-bottom: 20px;
+  border-radius: 20px;
+  padding: 10px 20px;
+  text-align: center;
+  font-family: "Cascadia Code", monospace;
+  width: 75%;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+
+.intro-section h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.intro-section p {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.intro-section blockquote {
+  font-size: 24px;
+  font-style: italic;
+  margin-bottom: 30px;
+}
+
+.intro-section blockquote p {
+  margin: 0;
+}
+
+.intro-section cite {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Ustawienie stylu dla przycisków */
+.file-upload,
+.submit-button {
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #f06292;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Arial", sans-serif;
+  background-image: linear-gradient(to top right, #000000, #1a237e, #a900d3);
+  position: relative;
+  margin-top: 7px;
+  margin-bottom: 0;
+  transition: transform 0.3s ease-in-out, box-shadow 0.5s ease-in-out,
+    margin-bottom 0.3s ease-in-out;
+}
+
+/* Ustawienie stylu dla przycisku wyboru pliku */
+.file-upload {
+  transition: top 0.3s ease-in-out;
+}
+
+.file-upload:hover:not(:disabled) {
+  transform: scale(1.3);
+  box-shadow: 0 0 0 0 var(--glow-color), 0 0 50px var(--glow-color);
+  top: -6px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.5s ease-in-out,
+    margin-bottom 0.3s ease-in-out;
+}
+
+/* Ustawienie stylu dla przycisku wysyłania formularza */
+.submit-button:hover:not(:disabled) {
+  transform: scale(1.3);
+  box-shadow: 0 0 0 0 var(--glow-color), 0 0 50px var(--glow-color);
+  margin-top: 13px;
+  margin-bottom: 7px;
+  transition: margin 0.3s ease-in-out, transform 0.3s ease-in-out,
+    box-shadow 0.5s ease-in-out;
+}
+
+.submit-button:focus:not(:disabled),
+.file-upload:focus:not(:disabled) {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(244, 143, 177, 0.5);
+}
+
+.submit-button:disabled:hover {
+  animation: shake 0.4s;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: rotate(-5deg);
+  }
+  20%,
+  80% {
+    transform: rotate(5deg);
+  }
+  30%,
+  50%,
+  70% {
+    transform: rotate(-5deg);
+  }
+  40%,
+  60% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+.submit.disabled {
+  background-color: #808080;
+  cursor: not-allowed;
+  transition: background-color 0.5s ease-out;
+  box-shadow: none;
+}
+
+/* Ustawienie stylu dla nakładki na przycisk wysyłania formularza */
+.submit-button-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0f0f0f;
+  cursor: not-allowed;
+  opacity: 0.5;
+  z-index: 2;
+  transition: transform 0.3s ease-in-out;
+  border-radius: 4px;
+}
+
+.submit-button:not(:disabled):active .submit-button-overlay {
+  transform: translateY(100%);
+}
+
+.submit.disabled .submit-button-overlay {
+  display: block;
+}
+
+.submit-button-text {
+  position: relative;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Ukrycie elementu wyboru pliku */
+#fileupload {
+  display: none;
+}
+
+/* Ustawienie stylu dla kontenera przycisków */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+/* Ustawienie stylu dla efektu świetlnego */
+#glow {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  z-index: 0;
+  box-shadow: 0 0 0 0 var(--glow-color), 0 0 100px var(--glow-color);
+  transition: box-shadow 0.5s ease-in-out;
+  background-color: transparent;
+  animation: rainbow 10s linear infinite;
+}
+
+@keyframes rainbow {
+  0% {
+    box-shadow: 0 0 100px 100px #ff0000, 0 100px 100px #ff0000;
+  }
+  12.5% {
+    box-shadow: 0 0 100px 100px #ff7f00, 0 100px 100px #ff7f00;
+  }
+  25% {
+    box-shadow: 0 0 100px 100px #ffff00, 0 100px 100px #ffff00;
+  }
+  37.5% {
+    box-shadow: 0 0 100px 100px #00ff00, 0 100px 100px #00ff00;
+  }
+  50% {
+    box-shadow: 0 0 100px 100px #0000ff, 0 100px 100px #0000ff;
+  }
+  62.5% {
+    box-shadow: 0 0 100px 100px #4b0082, 0 100px 100px #4b0082;
+  }
+  75% {
+    box-shadow: 0 0 100px 100px #8b00ff, 0 100px 100px #8b00ff;
+  }
+  87.5% {
+    box-shadow: 0 0 100px 100px #ff00ff, 0 100px 100px #ff0000;
+  }
+  100% {
+    box-shadow: 0 0 100px 100px #ff0000, 0 100px 100px #ff0000;
+  }
+}

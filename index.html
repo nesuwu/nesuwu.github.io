@@ -1,11 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="PL-pl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nesuwu</title>
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
   </head>
   <body>
-    <h1>nesuwuw</h1>
+    <section class="intro-section">
+      <div class="color-box"></div>
+      <h1>Meowster.net</h1>
+      <p>Tu wszystko co niemożliwe pozostaje niemożliwe.</p>
+      <blockquote>
+        <p>"Totalnie nie wiem po co to komu ale wrzucaj tu jakies pliki XD"</p>
+        <cite>- Nesu</cite>
+      </blockquote>
+    </section>
+    <div class="uploader">
+      <form
+        id="uploadbanner"
+        enctype="multipart/form-data"
+        method="post"
+        action="#"
+      >
+        <div class="button-container">
+          <label for="fileupload" class="file-upload"> Wybierz plik </label>
+          <input id="fileupload" name="myfile" type="file" />
+          <button type="submit" class="submit-button" disabled>
+            <span class="submit-button-text">Wyślij plik</span>
+            <div class="submit-button-overlay"></div>
+          </button>
+        </div>
+      </form>
+    </div>
+    <div id="color-bar"></div>
+    <div id="glow" style="height: 4px"></div>
+    <script src="script.js"></script>
   </body>
 </html>
