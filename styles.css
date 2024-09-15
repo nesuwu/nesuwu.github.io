@@ -1,3 +1,5 @@
+/* styles.css */
+
 * {
   margin: 0;
   padding: 0;
@@ -6,49 +8,52 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #002b17;
-  color: #fff;
+  background-color: #0D1A16; /* Dark muted green */
+  color: #C2E4C0; /* Lighter green for text */
   line-height: 1.6;
   overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  position: relative;
 }
 
-/* Ensure the canvas starts below the header and above the footer */
+/* Canvas for the falling leaves */
 canvas {
-  position: fixed;
-  top: 150px; /* Below the header */
+  position: absolute;
+  top: 0;
   left: 0;
   width: 100%;
-  height: calc(100% - 150px - 100px); /* Leaves will fall between header and footer */
-  z-index: -1; /* Canvas is behind the main content */
+  height: 100%;
+  z-index: 0; /* Canvas is below the main content */
+  pointer-events: none; /* Ensure canvas doesn't intercept mouse events */
+}
+
+header,
+section,
+footer {
+  position: relative; /* Ensure z-index takes effect */
+  z-index: 1; /* Higher than the canvas */
 }
 
 header {
-  background: linear-gradient(135deg, #013b1c, #025229);
-  color: #fff;
+  background: linear-gradient(135deg, #082915, #0A3C25); /* Very dark green gradient */
+  color: #C2E4C0; /* Light green for the text */
   text-align: center;
   padding: 3rem 0;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
-  border-bottom: 2px solid #00b573;
+  border-bottom: 2px solid #1DD176; /* Bright greenish accent */
 }
 
 header h1 {
   font-size: 3rem;
   margin-bottom: 0.5rem;
-  color: #00b573;
+  color: #1DD176; /* Bright green accent for the title */
 }
 
 header p {
   font-size: 1.5rem;
-  color: #d4f7e0;
+  color: #C2E4C0; /* Lighter green text */
 }
 
 section {
   padding: 3rem 0;
-  background: #002b17;
 }
 
 .container {
@@ -59,8 +64,8 @@ section {
 h2 {
   margin-bottom: 1rem;
   font-size: 2.5rem;
-  color: #d4f7e0;
-  border-bottom: 2px solid #00b573;
+  color: #C2E4C0; /* Light green for headings */
+  border-bottom: 2px solid #1DD176; /* Bright greenish accent */
   padding-bottom: 0.5rem;
 }
 
@@ -77,8 +82,8 @@ ul li {
 
 ul li a {
   display: block;
-  background-color: #013b1c;
-  color: #00b573;
+  background-color: #0A3C25; /* Dark muted green */
+  color: #1DD176; /* Bright green text */
   padding: 1rem 2rem;
   border-radius: 10px;
   font-size: 1.2rem;
@@ -90,12 +95,12 @@ ul li a {
 
 ul li a:hover {
   transform: translateY(-10px);
-  background-color: #00b573;
-  color: #fff;
+  background-color: #12a65f; /* Hover bright green background */
+  color: #0D1A16; /* Dark muted green text */
 }
 
 .project {
-  background-color: #013b1c;
+  background-color: #0A3C25; /* Dark muted green background */
   padding: 2rem;
   margin: 1rem 0;
   border-radius: 10px;
@@ -103,32 +108,31 @@ ul li a:hover {
 }
 
 .project h3 {
-  color: #00b573;
+  color: #1DD176; /* Bright green accent */
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
 }
 
 .project p {
   font-size: 1.1rem;
-  color: #d4f7e0;
+  color: #C2E4C0; /* Lighter green text */
 }
 
 footer {
-  background: #013b1c;
-  color: #d4f7e0;
+  background: #0A3C25; /* Dark muted green background */
+  color: #C2E4C0; /* Light green text */
   text-align: center;
   padding: 1.5rem 0;
   margin-top: 2rem;
   box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.6);
-  height: 100px; /* Set footer height to be used for calculation */
 }
 
 footer a {
-  color: #00b573;
+  color: #1DD176; /* Bright green links */
   text-decoration: none;
   font-weight: bold;
 }
 
 footer a:hover {
-  color: #fff;
+  color: #C2E4C0; /* Hover lighter green */
 }
