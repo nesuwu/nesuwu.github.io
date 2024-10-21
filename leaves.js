@@ -5,7 +5,7 @@ const ctx = canvas.getContext('2d');
 const leaves = [];
 const leafImages = [];
 const tintedLeaves = [];
-const numberOfLeaves = 50;
+const numberOfLeaves = 100;
 
 // Predefined leaf image filenames
 const leafImageFilenames = [
