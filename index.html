@@ -5,62 +5,136 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nesu's Portfolio</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-
-  <header>
-    <div class="container">
-      <h1>Nesu! :3</h1>
-      <p>Hobbyist programmer focused on Rust, C++, C#, Kotlin, and JavaScript</p>
-    </div>
-  </header>
-
   <!-- Canvas for the falling leaves -->
   <canvas id="fallingLeaves"></canvas>
 
-  <section id="about">
-    <div class="container">
-      <h2>Something About Me</h2>
-      <p>Hi! I'm Nesu, a 15-year-old Non-Binary programmer from Poland. My hobby is programming, and I'm hoping for it to become my full-time job in the future. <br> I am also a part of the furry fandom! :3</p>
-    </div>
-  </section>
-
-  <section id="skills">
-    <div class="container">
-      <h2>Skills</h2>
-      <ul>
-        <li><a href="https://www.rust-lang.org/" target="_blank">Rust</a></li>
-        <li><a href="https://isocpp.org/" target="_blank">C++</a></li>
-        <li><a href="https://learn.microsoft.com/en-us/dotnet/csharp/" target="_blank">C#</a></li>
-        <li><a href="https://kotlinlang.org/" target="_blank">Kotlin</a></li>
-        <li><a href="https://www.javascript.com/" target="_blank">JavaScript</a></li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="projects">
-    <div class="container">
-      <h2>Projects</h2>
-      <div class="project">
-        <h3>Cathy Electron</h3>
-        <p>A file upload client for catbox.moe, built in Electron, my first mainline project.</p>
+  <main class="content-wrapper">
+    <header class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="glowing-text">Nesu! :3</h1>
+          <p class="subtitle">Hobbyist programmer focused on</p>
+          <div class="tech-stack">
+            <span class="tech-badge">Rust</span>
+            <span class="tech-badge">C++</span>
+            <span class="tech-badge">C#</span>
+            <span class="tech-badge">Kotlin</span>
+            <span class="tech-badge">JavaScript</span>
+          </div>
+        </div>
       </div>
-      <div class="project">
-        <h3>NeutralinoJS Cathy Rewrite (WIP)</h3>
-        <p>A rewrite of my file upload client for catbox.moe remade in NeutralinoJS for performance and size optimizations.</p>
+    </header>
+
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+          <p class="about-text">
+            Hi! I'm Nesu, a 15-year-old Non-Binary programmer from Poland. My hobby is programming, 
+            and I'm hoping for it to become my full-time job in the future. 
+            <br>
+            <span class="highlight">I am also a part of the furry fandom! :3</span>
+          </p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    <div class="container">
-      <p>Contact me via e-mail: <a href="mailto:nesudev@protonmail.com">nesudev@protonmail.com</a></p>
-      <p>Check out my GitHub: <a href="https://github.com/nesuwu" target="_blank">nesuwu</a></p>
-    </div>
-  </footer>
-  
+    <section id="skills" class="section">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+          <a href="https://www.rust-lang.org/" target="_blank" class="skill-card">
+            <i class="fas fa-cog"></i>
+            <span>Rust</span>
+          </a>
+          <a href="https://isocpp.org/" target="_blank" class="skill-card">
+            <i class="fas fa-code"></i>
+            <span>C++</span>
+          </a>
+          <a href="https://learn.microsoft.com/en-us/dotnet/csharp/" target="_blank" class="skill-card">
+            <i class="fab fa-microsoft"></i>
+            <span>C#</span>
+          </a>
+          <a href="https://kotlinlang.org/" target="_blank" class="skill-card">
+            <i class="fas fa-mobile-alt"></i>
+            <span>Kotlin</span>
+          </a>
+          <a href="https://www.javascript.com/" target="_blank" class="skill-card">
+            <i class="fab fa-js"></i>
+            <span>JavaScript</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
-  <script src="leaves.js"></script>
-  
+    <section id="projects" class="section">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+          <a href="https://github.com/nesuwu/cathy-electron" class="project-card">
+            <div class="project-content">
+              <h3>Cathy Electron</h3>
+              <p>A file upload client for catbox.moe made in electron.</p>
+              <div class="project-tech">
+                <span class="tech-tag">Electron</span>
+                <span class="tech-tag">JavaScript</span>
+              </div>
+              <span class="status-badge deprecated">DEPRECATED</span>
+            </div>
+          </a>
+
+          <a href="https://github.com/nesuwu/RustyTaskManager" class="project-card">
+            <div class="project-content">
+              <h3>Rusty Task Manager</h3>
+              <p>A simple task manager built in Rust, my computer science final project.</p>
+              <div class="project-tech">
+                <span class="tech-tag">Rust</span>
+                <span class="tech-tag">TUI</span>
+              </div>
+              <span class="status-badge deprecated">DEPRECATED</span>
+            </div>
+          </a>
+          
+          <a href="https://github.com/nesuwu/cathy-neutralino" class="project-card">
+            <div class="project-content">
+              <h3>NeutralinoJS Cathy Rewrite</h3>
+              <p>A rewrite of my file upload client for catbox.moe remade in NeutralinoJS for performance and size optimizations.</p>
+              <div class="project-tech">
+                <span class="tech-tag">NeutralinoJS</span>
+                <span class="tech-tag">JavaScript</span>
+              </div>
+              <span class="status-badge">WIP</span>
+            </div>
+          </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="contact-links">
+          <a href="mailto:nesudev@protonmail.com" class="contact-link">
+            <i class="fas fa-envelope"></i>
+            <span>nesudev@protonmail.com</span>
+          </a>
+          <a href="https://github.com/nesuwu" target="_blank" class="contact-link">
+            <i class="fab fa-github"></i>
+            <span>nesuwu</span>
+          </a>
+        </div>
+        <p class="copyright">Made with 💖 by Nesu! :3</p>
+      </div>
+    </footer>
+  </main>
+
+  <script src="scripts.js"></script>
 </body>
 </html>
