@@ -2,9 +2,12 @@
 const canvas = document.getElementById('fallingLeaves');
 const ctx = canvas.getContext('2d');
 
+// Check if device is mobile
+const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
 // Configuration
 const config = {
-  leafCount: 200,
+  leafCount: isMobile ? 80 : 300,
   leafColor: '#2aff95',
   windSpeed: 0.05,
   windVariation: 0.1,
@@ -44,6 +47,30 @@ document.addEventListener('visibilitychange', () => {
   }
 });
 
+// Handle window resize
+window.addEventListener('resize', () => {
+  const wasMobile = config.leafCount === 80;
+  const isMobileNow = window.matchMedia('(max-width: 768px)').matches;
+  
+  // Only update if the device type changed
+  if (wasMobile !== isMobileNow) {
+    config.leafCount = isMobileNow ? 80 : 300;
+    // Reinitialize leaves with new count
+    leaves = Array.from({ length: config.leafCount }, () => {
+      const leaf = new Leaf();
+      leaf.reset(true);
+      return leaf;
+    });
+  }
+  
+  setCanvasSize();
+  leaves.forEach(leaf => {
+    if (leaf.x > canvas.width) {
+      leaf.reset();
+    }
+  });
+});
+
 // Initialize canvas size with proper DPI handling
 function setCanvasSize() {
   const dpr = window.devicePixelRatio || 1;
@@ -57,66 +84,75 @@ function setCanvasSize() {
 }
 
 // Load leaf images
-async function loadLeafImages() {
-  const imageUrls = [
-    'leaves/leaf1.png',
-    'leaves/leaf2.png',
-    'leaves/leaf3.png',
-    'leaves/leaf4.png',
-    'leaves/leaf5.png',
-  ];
+const leafImageUrls = [
+  'leaves/leaf1.png',
+  'leaves/leaf2.png',
+  'leaves/leaf3.png',
+  'leaves/leaf4.png',
+  'leaves/leaf5.png',
+];
 
-  const loadImage = (url) => {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.onload = () => resolve(createTintedLeaf(img));
-      img.onerror = reject;
-      img.src = url;
-    });
+let loadedImages = 0;
+leafImageUrls.forEach(url => {
+  const img = new Image();
+  img.onload = () => {
+    loadedImages++;
+    leafImages.push(createTintedLeaf(img));
+    if (loadedImages === leafImageUrls.length) {
+      isLoading = false;
+      initLeaves();
+      animate(performance.now());
+    }
   };
-
-  try {
-    leafImages = await Promise.all(imageUrls.map(loadImage));
-    isLoading = false;
-    initLeaves();
-  } catch (error) {
-    console.error('Error loading leaf images:', error);
-  }
-}
+  img.src = url;
+});
 
 // Create a tinted version of the leaf
 function createTintedLeaf(originalImage) {
   const offCanvas = document.createElement('canvas');
+  const offCtx = offCanvas.getContext('2d');
+  
   offCanvas.width = originalImage.width;
   offCanvas.height = originalImage.height;
-  const offCtx = offCanvas.getContext('2d');
-
-  // Draw the original image
+  
+  // Draw original image
   offCtx.drawImage(originalImage, 0, 0);
-
-  // Get image data for processing
+  
+  // Get image data
   const imageData = offCtx.getImageData(0, 0, offCanvas.width, offCanvas.height);
   const data = imageData.data;
-
-  // Convert leaf color to RGB
-  const tempCanvas = document.createElement('canvas');
-  const tempCtx = tempCanvas.getContext('2d');
-  tempCtx.fillStyle = config.leafColor;
-  tempCtx.fillRect(0, 0, 1, 1);
-  const colorData = tempCtx.getImageData(0, 0, 1, 1).data;
-  const [r, g, b] = [colorData[0], colorData[1], colorData[2]];
-
-  // Apply tint while preserving transparency
+  
+  // Convert hex color to RGB
+  const color = config.leafColor;
+  const r = parseInt(color.slice(1, 3), 16);
+  const g = parseInt(color.slice(3, 5), 16);
+  const b = parseInt(color.slice(5, 7), 16);
+  
+  // Tint the image
   for (let i = 0; i < data.length; i += 4) {
-    if (data[i + 3] > 0) {
-      data[i] = (data[i] * r) / 255;
-      data[i + 1] = (data[i + 1] * g) / 255;
-      data[i + 2] = (data[i + 2] * b) / 255;
+    const alpha = data[i + 3];
+    if (alpha > 0) {
+      // Keep some of the original color for texture
+      const factor = 0.8;
+      data[i] = Math.round(r * factor + data[i] * (1 - factor));
+      data[i + 1] = Math.round(g * factor + data[i + 1] * (1 - factor));
+      data[i + 2] = Math.round(b * factor + data[i + 2] * (1 - factor));
     }
   }
-
+  
+  // Put the tinted image data back
   offCtx.putImageData(imageData, 0, 0);
+  
   return offCanvas;
+}
+
+// Initialize leaves
+function initLeaves() {
+  leaves = Array.from({ length: config.leafCount }, () => {
+    const leaf = new Leaf();
+    leaf.reset(true);
+    return leaf;
+  });
 }
 
 // Leaf class
@@ -197,15 +233,6 @@ class Leaf {
   }
 }
 
-// Leaves array and animation state
-function initLeaves() {
-  leaves = Array.from({ length: config.leafCount }, () => {
-    const leaf = new Leaf();
-    leaf.reset(true); // Pass true for initial spawn
-    return leaf;
-  });
-}
-
 // Animation loop
 function animate(currentTime) {
   if (!isPageVisible) {
@@ -231,17 +258,5 @@ function animate(currentTime) {
   animationFrame = requestAnimationFrame(animate);
 }
 
-// Event listeners
-window.addEventListener('resize', () => {
-  setCanvasSize();
-  leaves.forEach(leaf => {
-    if (leaf.x > canvas.width) {
-      leaf.reset();
-    }
-  });
-});
-
-// Initialize everything
+// Initial setup
 setCanvasSize();
-loadLeafImages();
-animate(0);
