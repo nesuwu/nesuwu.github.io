@@ -4,7 +4,7 @@ const ctx = canvas.getContext('2d');
 
 // Configuration
 const config = {
-  leafCount: 300,
+  leafCount: 200,
   leafColor: '#2aff95',
   windSpeed: 0.05,
   windVariation: 0.1,
