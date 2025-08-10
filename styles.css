@@ -156,9 +156,10 @@ canvas {
 /* Skills section */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: var(--spacing-md);
   margin-top: var(--spacing-lg);
+  grid-auto-flow: row dense;
 }
 
 .skill-card {
@@ -197,17 +198,13 @@ canvas {
 
 /* Projects section */
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--spacing-lg);
   margin-top: var(--spacing-lg);
+  justify-content: center;
 }
-
-@media (max-width: 768px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-}
+ 
 
 .project-card {
   background: var(--color-card);
@@ -221,6 +218,8 @@ canvas {
   display: flex;
   text-decoration: none;
   color: var(--color-text);
+  flex: 1 1 320px; /* grow/shrink with a comfy minimum */
+  max-width: 520px; /* keep line lengths readable */
 }
 
 .project-card:hover {
@@ -366,7 +365,7 @@ canvas {
   }
 
   .skills-grid {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   }
 
   .project-card {

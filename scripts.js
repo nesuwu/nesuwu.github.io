@@ -27,6 +27,9 @@ let isPageVisible = true;
 let leafImages = [];
 let isLoading = true;
 let leaves = [];
+// Track canvas CSS pixel size (separate from backing store size)
+let canvasCssWidth = 0;
+let canvasCssHeight = 0;
 
 // Utility functions
 const random = (min, max) => Math.random() * (max - min) + min;
@@ -76,9 +79,14 @@ function setCanvasSize() {
   const dpr = window.devicePixelRatio || 1;
   const rect = canvas.getBoundingClientRect();
   
-  canvas.width = rect.width * dpr;
-  canvas.height = rect.height * dpr;
+  canvasCssWidth = rect.width;
+  canvasCssHeight = rect.height;
+
+  canvas.width = canvasCssWidth * dpr;
+  canvas.height = canvasCssHeight * dpr;
   
+  // Reset transform before applying DPR scale so coordinates stay in CSS pixels
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.scale(dpr, dpr);
   ctx.lineWidth = 2;
 }
@@ -164,14 +172,14 @@ class Leaf {
   reset(initialSpawn = false) {
     this.image = leafImages[Math.floor(Math.random() * leafImages.length)];
     this.size = random(config.size.min, config.size.max);
-    this.x = random(0, canvas.width);
+    this.x = random(0, canvasCssWidth);
     
     // If it's initial spawn, distribute leaves across the screen
     // Otherwise, reset them above the viewport
     if (initialSpawn) {
-      this.y = random(-canvas.height, canvas.height);
+      this.y = random(-canvasCssHeight, canvasCssHeight);
     } else {
-      this.y = -this.size - random(0, canvas.height * 0.5);
+      this.y = -this.size - random(0, canvasCssHeight * 0.5);
     }
     
     this.speedY = random(config.fallingSpeed.min, config.fallingSpeed.max);
@@ -207,10 +215,10 @@ class Leaf {
     }
 
     // Only wrap horizontally
-    if (this.x > canvas.width + this.size) {
+    if (this.x > canvasCssWidth + this.size) {
       this.x = -this.size;
     } else if (this.x < -this.size) {
-      this.x = canvas.width + this.size;
+      this.x = canvasCssWidth + this.size;
     }
   }
 
@@ -248,7 +256,7 @@ function animate(currentTime) {
   const deltaTime = Math.min((currentTime - lastTime) || 16.67, 32); // Cap at 32ms to prevent huge jumps
   lastTime = currentTime;
 
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, canvasCssWidth, canvasCssHeight);
 
   leaves.forEach(leaf => {
     leaf.update(deltaTime);
