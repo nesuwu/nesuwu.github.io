@@ -7,11 +7,24 @@
 
 :root {
   --color-background: #0a1f14;
+  --color-background-deep: #071510;
   --color-text: #e0ffe0;
   --color-accent: #2aff95;
   --color-accent-glow: #1dd17655;
   --color-card: #102b1e;
   --color-card-hover: #15af6d;
+  --color-accent-soft: rgba(42, 255, 149, 0.1);
+  --color-accent-soft-strong: rgba(42, 255, 149, 0.2);
+  --color-shadow-soft: rgba(29, 209, 118, 0.14);
+  --color-hero-gradient-start: rgba(10, 31, 20, 0.9);
+  --color-hero-gradient-end: rgba(16, 43, 30, 0.95);
+  --color-accent-100: #d8ffeb;
+  --color-accent-200: #bcffd9;
+  --color-accent-300: #95ffc2;
+  --color-accent-400: #63f4a5;
+  --color-accent-500: #2aff95;
+  --color-accent-600: #18d67b;
+  --color-accent-700: #0ea862;
   --max-width: 1200px;
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
@@ -22,7 +35,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at center, var(--color-background) 0%, #071510 100%);
+  background: radial-gradient(circle at center, var(--color-background) 0%, var(--color-background-deep) 100%);
   color: var(--color-text);
   line-height: 1.6;
   overflow-x: hidden;
@@ -61,7 +74,7 @@ canvas {
   justify-content: center;
   text-align: center;
   padding: var(--spacing-xl) 0;
-  background: linear-gradient(135deg, rgba(10,31,20,0.9), rgba(16,43,30,0.95));
+  background: linear-gradient(135deg, var(--color-hero-gradient-start), var(--color-hero-gradient-end));
   backdrop-filter: blur(10px);
   border-bottom: 2px solid var(--color-accent-glow);
 }
@@ -175,7 +188,7 @@ canvas {
   align-items: center;
   gap: var(--spacing-md);
   border: 1px solid var(--color-accent-glow);
-  box-shadow: 0 4px 15px rgba(29, 209, 118, 0.1);
+  box-shadow: 0 4px 15px var(--color-shadow-soft);
 }
 
 .skill-card i {
@@ -213,7 +226,7 @@ canvas {
   transition: all 0.3s ease;
   position: relative;
   border: 1px solid var(--color-accent-glow);
-  box-shadow: 0 4px 15px rgba(29, 209, 118, 0.1);
+  box-shadow: 0 4px 15px var(--color-shadow-soft);
   height: 100%;
   display: flex;
   text-decoration: none;
@@ -258,7 +271,7 @@ canvas {
 }
 
 .tech-tag {
-  background: rgba(42, 255, 149, 0.1);
+  background: var(--color-accent-soft);
   color: var(--color-accent);
   padding: 0.25rem 0.75rem;
   border-radius: 15px;

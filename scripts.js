@@ -1,3 +1,133 @@
+// Soft color theme setup (randomized on each page load)
+const softThemeSeeds = [
+  { name: 'mint', bgHue: 154, accentHue: 164 },
+  { name: 'sage', bgHue: 98, accentHue: 112 },
+  { name: 'sky', bgHue: 204, accentHue: 190 },
+  { name: 'lavender', bgHue: 246, accentHue: 232 },
+  { name: 'peach', bgHue: 28, accentHue: 16 },
+  { name: 'rose', bgHue: 334, accentHue: 346 },
+];
+
+const random = (min, max) => Math.random() * (max - min) + min;
+const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+function normalizeHue(value) {
+  return ((value % 360) + 360) % 360;
+}
+
+function hslToHex(h, s, l) {
+  const hue = normalizeHue(h) / 360;
+  const sat = clamp(s, 0, 100) / 100;
+  const light = clamp(l, 0, 100) / 100;
+
+  if (sat === 0) {
+    const gray = Math.round(light * 255);
+    const part = gray.toString(16).padStart(2, '0');
+    return `#${part}${part}${part}`;
+  }
+
+  const q = light < 0.5 ? light * (1 + sat) : light + sat - light * sat;
+  const p = 2 * light - q;
+
+  const hueToRgb = (t) => {
+    let channel = t;
+    if (channel < 0) channel += 1;
+    if (channel > 1) channel -= 1;
+    if (channel < 1 / 6) return p + (q - p) * 6 * channel;
+    if (channel < 1 / 2) return q;
+    if (channel < 2 / 3) return p + (q - p) * (2 / 3 - channel) * 6;
+    return p;
+  };
+
+  const r = Math.round(hueToRgb(hue + 1 / 3) * 255);
+  const g = Math.round(hueToRgb(hue) * 255);
+  const b = Math.round(hueToRgb(hue - 1 / 3) * 255);
+
+  return `#${[r, g, b].map((channel) => channel.toString(16).padStart(2, '0')).join('')}`;
+}
+
+function hexToRgb(hex) {
+  const clean = hex.replace('#', '');
+  const value = clean.length === 3
+    ? clean.split('').map((char) => char + char).join('')
+    : clean;
+
+  return {
+    r: parseInt(value.slice(0, 2), 16),
+    g: parseInt(value.slice(2, 4), 16),
+    b: parseInt(value.slice(4, 6), 16),
+  };
+}
+
+function rgbaFromHex(hex, alpha) {
+  const { r, g, b } = hexToRgb(hex);
+  return `rgba(${r}, ${g}, ${b}, ${clamp(alpha, 0, 1)})`;
+}
+
+function createAccentShades(accentHue, saturation, lightness) {
+  return {
+    100: hslToHex(accentHue, saturation - 22, lightness + 28),
+    200: hslToHex(accentHue, saturation - 16, lightness + 20),
+    300: hslToHex(accentHue, saturation - 10, lightness + 12),
+    400: hslToHex(accentHue, saturation - 4, lightness + 6),
+    500: hslToHex(accentHue, saturation, lightness),
+    600: hslToHex(accentHue, saturation + 2, lightness - 8),
+    700: hslToHex(accentHue, saturation + 4, lightness - 16),
+  };
+}
+
+function applyRandomSoftTheme() {
+  const seed = softThemeSeeds[Math.floor(Math.random() * softThemeSeeds.length)];
+  const bgHue = normalizeHue(seed.bgHue + random(-7, 7));
+  const accentHue = normalizeHue(seed.accentHue + random(-8, 8));
+
+  const accentSat = random(44, 58);
+  const accentLight = random(62, 70);
+  const shades = createAccentShades(accentHue, accentSat, accentLight);
+
+  const colors = {
+    background: hslToHex(bgHue, random(20, 30), random(11, 16)),
+    backgroundDeep: hslToHex(bgHue + random(-6, 6), random(24, 34), random(7, 11)),
+    card: hslToHex(bgHue + random(-4, 4), random(18, 30), random(17, 24)),
+    cardHover: hslToHex(bgHue + random(-4, 4), random(22, 34), random(25, 32)),
+    text: hslToHex(bgHue + 28, random(18, 28), random(88, 94)),
+    accent: shades[500],
+    accentGlow: rgbaFromHex(shades[500], 0.44),
+    accentSoft: rgbaFromHex(shades[500], 0.12),
+    accentSoftStrong: rgbaFromHex(shades[500], 0.2),
+    shadowSoft: rgbaFromHex(shades[500], 0.14),
+    heroStart: rgbaFromHex(hslToHex(bgHue, 28, 12), 0.9),
+    heroEnd: rgbaFromHex(hslToHex(bgHue + 4, 26, 18), 0.95),
+  };
+
+  const root = document.documentElement;
+  root.style.setProperty('--color-background', colors.background);
+  root.style.setProperty('--color-background-deep', colors.backgroundDeep);
+  root.style.setProperty('--color-text', colors.text);
+  root.style.setProperty('--color-accent', colors.accent);
+  root.style.setProperty('--color-accent-glow', colors.accentGlow);
+  root.style.setProperty('--color-card', colors.card);
+  root.style.setProperty('--color-card-hover', colors.cardHover);
+  root.style.setProperty('--color-accent-soft', colors.accentSoft);
+  root.style.setProperty('--color-accent-soft-strong', colors.accentSoftStrong);
+  root.style.setProperty('--color-shadow-soft', colors.shadowSoft);
+  root.style.setProperty('--color-hero-gradient-start', colors.heroStart);
+  root.style.setProperty('--color-hero-gradient-end', colors.heroEnd);
+  root.style.setProperty('--color-accent-100', shades[100]);
+  root.style.setProperty('--color-accent-200', shades[200]);
+  root.style.setProperty('--color-accent-300', shades[300]);
+  root.style.setProperty('--color-accent-400', shades[400]);
+  root.style.setProperty('--color-accent-500', shades[500]);
+  root.style.setProperty('--color-accent-600', shades[600]);
+  root.style.setProperty('--color-accent-700', shades[700]);
+
+  return {
+    leafColor: shades[400],
+  };
+}
+
+const selectedTheme = applyRandomSoftTheme();
+
 // Canvas setup
 const canvas = document.getElementById('fallingLeaves');
 const ctx = canvas.getContext('2d');
@@ -8,7 +138,7 @@ const isMobile = window.matchMedia('(max-width: 768px)').matches;
 // Configuration
 const config = {
   leafCount: isMobile ? 80 : 300,
-  leafColor: '#2aff95',
+  leafColor: selectedTheme.leafColor,
   windSpeed: 0.05,
   windVariation: 0.1,
   fallingSpeed: { min: 0.05, max: 0.1 },
@@ -30,10 +160,6 @@ let leaves = [];
 // Track canvas CSS pixel size (separate from backing store size)
 let canvasCssWidth = 0;
 let canvasCssHeight = 0;
-
-// Utility functions
-const random = (min, max) => Math.random() * (max - min) + min;
-const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
 // Handle page visibility
 document.addEventListener('visibilitychange', () => {
