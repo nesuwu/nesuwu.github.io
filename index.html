@@ -1,168 +1,522 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nesu's Portfolio</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-  <!-- Canvas for the falling leaves -->
-  <canvas id="fallingLeaves"></canvas>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Nesu / hobby programmer</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@300;400;600&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        />
+    </head>
+    <body>
+        <canvas id="fallingLeaves"></canvas>
 
-  <main class="content-wrapper">
-    <header class="hero">
-      <div class="container">
-        <div class="hero-content">
-          <h1 class="glowing-text">Nesu! :3</h1>
-          <p class="subtitle">Hobbyist programmer focused on</p>
-          <div class="tech-stack">
-            <span class="tech-badge">Rust</span>
-            <span class="tech-badge">Kotlin</span>
-            <span class="tech-badge">Java</span>
-            <span class="tech-badge">HTML</span>
-            <span class="tech-badge">CSS</span>
-            <span class="tech-badge">JavaScript</span>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <section id="about" class="section">
-      <div class="container">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-content">
-          <p class="about-text">
-            Hi! I'm Nesu, a Non-Binary junior programmer and high school student from Poland. My hobby is programming, 
-            and I'm hoping for it to become my full-time job in the future. 
-            <br>
-            <span class="highlight">I am also a part of the furry fandom! :3</span>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills" class="section">
-      <div class="container">
-        <h2 class="section-title">Skills</h2>
-        <div class="skills-grid">
-          <a href="https://www.rust-lang.org/" target="_blank" class="skill-card">
-            <i class="fas fa-cog"></i>
-            <span>Rust</span>
-          </a>
-          <a href="https://kotlinlang.org/" target="_blank" class="skill-card">
-            <i class="fas fa-mobile-alt"></i>
-            <span>Kotlin</span>
-          </a>
-          <a href="https://www.java.com/" target="_blank" class="skill-card">
-            <i class="fab fa-java"></i>
-            <span>Java</span>
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" class="skill-card">
-            <i class="fab fa-html5"></i>
-            <span>HTML</span>
-          </a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" class="skill-card">
-            <i class="fab fa-css3-alt"></i>
-            <span>CSS</span>
-          </a>
-          <a href="https://www.javascript.com/" target="_blank" class="skill-card">
-            <i class="fab fa-js"></i>
-            <span>JavaScript</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="section">
-      <div class="container">
-        <h2 class="section-title">Projects</h2>
-        <div class="projects-grid">
-          <a href="https://github.com/nesuwu/cathy-electron" class="project-card">
-            <div class="project-content">
-              <h3>Cathy Electron</h3>
-              <p>A file upload client for catbox.moe made in electron.</p>
-              <div class="project-tech">
-                <span class="tech-tag">Electron</span>
-                <span class="tech-tag">JavaScript</span>
-              </div>
-              <span class="status-badge deprecated">Deprecated</span>
+        <nav class="nav">
+            <div class="nav-inner">
+                <span class="nav-logo">nesu<span class="accent">.</span></span>
+                <div class="nav-links">
+                    <a href="#about">about</a>
+                    <a href="#interests">interests</a>
+                    <a href="#skills">skills</a>
+                    <a href="#projects">projects</a>
+                    <a href="#contact">contact</a>
+                </div>
             </div>
-          </a>
+        </nav>
 
-          <a href="https://github.com/nesuwu/RustyTaskManager" class="project-card">
-            <div class="project-content">
-              <h3>Rusty Task Manager</h3>
-              <p>A simple task manager built in Rust, my computer science final project.</p>
-              <div class="project-tech">
-                <span class="tech-tag">Rust</span>
-                <span class="tech-tag">TUI</span>
-              </div>
-              <span class="status-badge deprecated">Deprecated</span>
-            </div>
-          </a>
+        <main class="content-wrapper">
+            <section class="hero">
+                <div class="hero-bg-grid"></div>
+                <div class="hero-inner">
+                    <h1 class="hero-name">
+                        <span class="hero-name-small">hey, i'm</span>
+                        Nesu<span class="accent">!</span>
+                    </h1>
+                    <p class="hero-sub">
+                        hobby programmer &amp;
+                        <span class="typed-text" id="typedText"></span
+                        ><span class="cursor-blink">|</span>
+                    </p>
+                    <div class="hero-badges">
+                        <span class="badge"
+                            ><i class="fas fa-cog fa-spin-slow"></i> Rust</span
+                        >
+                        <span class="badge">🐧 Linux</span>
+                        <span class="badge">🌿 open source</span>
+                        <span class="badge">🐾 furry</span>
+                        <span class="badge">🇵🇱 Poland</span>
+                    </div>
+                    <a href="#about" class="hero-scroll-cue">
+                        <span>scroll down</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                </div>
+                <div class="hero-deco-line"></div>
+            </section>
 
-          <a href="https://github.com/nesuwu/Kity" class="project-card" target="_blank">
-            <div class="project-content">
-              <h3>Kity</h3>
-              <p>Kity - The portable sister of Cathy. (This is just a mobile catbox client)</p>
-              <div class="project-tech">
-                <span class="tech-tag">Kotlin</span>
-                <span class="tech-tag">Android</span>
-              </div>
-              <span class="status-badge">Active-ish(?)</span>
-            </div>
-          </a>
+            <section id="about" class="section section-about reveal">
+                <div class="section-label">01 / about</div>
+                <div class="container">
+                    <div class="about-grid">
+                        <div class="about-card-left">
+                            <div class="avatar-blob">
+                                <div class="avatar-inner">
+                                    <img
+                                        src="furry.png"
+                                        alt="boykisser"
+                                        class="avatar-img"
+                                    />
+                                </div>
+                                <div class="avatar-ring"></div>
+                            </div>
+                            <div class="about-meta-list">
+                                <div class="meta-item">
+                                    <span class="meta-key">location</span>
+                                    <span class="meta-val">Poland 🇵🇱</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-key">status</span>
+                                    <span class="meta-val"
+                                        >student + hobbyist</span
+                                    >
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-key">main lang</span>
+                                    <span class="meta-val accent-text"
+                                        >Rust 🦀</span
+                                    >
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-key">os</span>
+                                    <span class="meta-val">Win 11 / Arch</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-key">fav anime</span>
+                                    <span class="meta-val">Toradora! 💖</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about-text-col">
+                            <h2 class="section-title">About Me</h2>
+                            <p class="about-p">
+                                Hi! I'm Nesu, a non-binary hobbyist programmer
+                                from Poland who spends way too much time writing
+                                software that probably didn't need to exist. I
+                                have a soft spot for low-level systems,
+                                memory-safe code and making my setup
+                                unnecessarily complex.
+                            </p>
+                            <p class="about-p">
+                                I'm drawn to tools that are fast, lean and
+                                actually useful. That's how I ended up deep in
+                                Rust. When I'm not staring at a compiler error,
+                                you'll find me listening to music with way too
+                                much bass, fawning over jackdaws or sinking
+                                hours into a game with too many systems to
+                                manage.
+                            </p>
+                            <p class="about-p">
+                                I'm also part of the furry fandom! :3 and I'm
+                                hoping to turn this programming hobby into
+                                something full-time someday.
+                            </p>
+                            <div class="about-tags">
+                                <span class="a-tag">open source</span>
+                                <span class="a-tag">low-level nerd</span>
+                                <span class="a-tag">crow lover</span>
+                                <span class="a-tag">basshead</span>
+                                <span class="a-tag">psychology</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-          <a href="https://github.com/nesuwu/llo" class="project-card" target="_blank">
-            <div class="project-content">
-              <h3>LLO</h3>
-              <p>A Minecraft mod that shows light levels in an intuitive way.</p>
-              <div class="project-tech">
-                <span class="tech-tag">Java</span>
-                <span class="tech-tag">Minecraft</span>
-                <span class="tech-tag">NeoForge</span>
-              </div>
-              <span class="status-badge">Active</span>
-            </div>
-          </a>
+            <section id="interests" class="section section-interests reveal">
+                <div class="section-label">02 / interests</div>
+                <div class="container">
+                    <h2 class="section-title">What I'm Into</h2>
+                    <div class="interests-grid">
+                        <div class="interest-card big">
+                            <div class="interest-emoji">🎵</div>
+                            <div class="interest-content">
+                                <h3>Bass-heavy music</h3>
+                                <p>
+                                    If the bass doesn't rattle something it
+                                    doesn't count. Heavy, moody, chaotic. Yes
+                                    please.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="interest-card">
+                            <div class="interest-emoji">🐦‍⬛</div>
+                            <div class="interest-content">
+                                <h3>Corvids</h3>
+                                <p>
+                                    Jackdaws &amp; rooks specifically.
+                                    Criminally underrated birds.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="interest-card">
+                            <div class="interest-emoji">🧠</div>
+                            <div class="interest-content">
+                                <h3>Psychology</h3>
+                                <p>
+                                    How people think and why they do what they
+                                    do.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="interest-card big">
+                            <div class="interest-emoji">🎮</div>
+                            <div class="interest-content">
+                                <h3>Gaming</h3>
+                                <p>
+                                    Love complex system-management games. If
+                                    there's a tech tree and a reason to min-max,
+                                    I'm in.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="interest-card">
+                            <div class="interest-emoji">🦊</div>
+                            <div class="interest-content">
+                                <h3>Furry fandom</h3>
+                                <p>Proud member :3</p>
+                            </div>
+                        </div>
+                        <div class="interest-card">
+                            <div class="interest-emoji">📺</div>
+                            <div class="interest-content">
+                                <h3>Anime</h3>
+                                <p>
+                                    Toradora! lives rent-free in my head
+                                    forever.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="interest-card">
+                            <div class="interest-emoji">🦀</div>
+                            <div class="interest-content">
+                                <h3>Rust &amp; systems</h3>
+                                <p>
+                                    Low-level stuff that probably didn't need to
+                                    exist.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="interest-card">
+                            <div class="interest-emoji">🐧</div>
+                            <div class="interest-content">
+                                <h3>Linux</h3>
+                                <p>Arch, btw.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-          <a href="https://github.com/nesuwu/SQuestL" class="project-card" target="_blank">
-            <div class="project-content">
-              <h3>SQuestL</h3>
-              <p>Just another computer science final project. A TUI game made using the Ink library.</p>
-              <div class="project-tech">
-                <span class="tech-tag">JavaScript</span>
-                <span class="tech-tag">TUI</span>
-              </div>
-              <span class="status-badge deprecated">Deprecated</span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
+            <section id="skills" class="section section-skills reveal">
+                <div class="section-label">03 / skills</div>
+                <div class="container">
+                    <h2 class="section-title">Skills</h2>
+                    <div class="skills-grid">
+                        <a
+                            href="https://www.rust-lang.org/"
+                            target="_blank"
+                            class="skill-card"
+                        >
+                            <div class="skill-icon">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <span class="skill-name">Rust</span>
+                            <span class="skill-note">main lang</span>
+                        </a>
+                        <a
+                            href="https://kotlinlang.org/"
+                            target="_blank"
+                            class="skill-card"
+                        >
+                            <div class="skill-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <span class="skill-name">Kotlin</span>
+                            <span class="skill-note">android</span>
+                        </a>
+                        <a
+                            href="https://www.java.com/"
+                            target="_blank"
+                            class="skill-card"
+                        >
+                            <div class="skill-icon">
+                                <i class="fab fa-java"></i>
+                            </div>
+                            <span class="skill-name">Java</span>
+                            <span class="skill-note">minecraft mods</span>
+                        </a>
+                        <a
+                            href="https://developer.mozilla.org/en-US/docs/Web/HTML"
+                            target="_blank"
+                            class="skill-card"
+                        >
+                            <div class="skill-icon">
+                                <i class="fab fa-html5"></i>
+                            </div>
+                            <span class="skill-name">HTML</span>
+                            <span class="skill-note">web</span>
+                        </a>
+                        <a
+                            href="https://developer.mozilla.org/en-US/docs/Web/CSS"
+                            target="_blank"
+                            class="skill-card"
+                        >
+                            <div class="skill-icon">
+                                <i class="fab fa-css3-alt"></i>
+                            </div>
+                            <span class="skill-name">CSS</span>
+                            <span class="skill-note">web</span>
+                        </a>
+                        <a
+                            href="https://www.javascript.com/"
+                            target="_blank"
+                            class="skill-card"
+                        >
+                            <div class="skill-icon">
+                                <i class="fab fa-js"></i>
+                            </div>
+                            <span class="skill-name">JavaScript</span>
+                            <span class="skill-note">web</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
 
-    <footer class="footer">
-      <div class="container">
-        <div class="contact-links">
-          <a href="mailto:nesudev@protonmail.com" class="contact-link">
-            <i class="fas fa-envelope"></i>
-            <span>nesudev@protonmail.com</span>
-          </a>
-          <a href="https://github.com/nesuwu" target="_blank" class="contact-link">
-            <i class="fab fa-github"></i>
-            <span>nesuwu</span>
-          </a>
-        </div>
-        <p class="copyright">Made with 💖 by Nesu! :3</p>
-      </div>
-    </footer>
-  </main>
+            <section id="projects" class="section section-projects reveal">
+                <div class="section-label">04 / projects</div>
+                <div class="container">
+                    <h2 class="section-title">Projects</h2>
 
-  <script src="scripts.js"></script>
-</body>
+                    <div class="projects-category">
+                        <span class="cat-label">// active</span>
+                        <div class="projects-grid">
+                            <a
+                                href="https://github.com/nesuwu/NTScan"
+                                target="_blank"
+                                class="project-card"
+                            >
+                                <div class="project-header">
+                                    <h3>NTScan</h3>
+                                    <span class="status-badge active"
+                                        >Active</span
+                                    >
+                                </div>
+                                <p>
+                                    Fast Windows file &amp; folder size scanner.
+                                    Low-level NTFS traversal built for speed.
+                                </p>
+                                <div class="project-footer">
+                                    <div class="project-tech">
+                                        <span class="tech-tag">Rust</span>
+                                        <span class="tech-tag">TUI</span>
+                                        <span class="tech-tag">Windows</span>
+                                    </div>
+                                    <span class="proj-arrow">→</span>
+                                </div>
+                            </a>
+
+                            <a
+                                href="https://github.com/nesuwu/NTScan-GUI"
+                                target="_blank"
+                                class="project-card"
+                            >
+                                <div class="project-header">
+                                    <h3>NTScan GUI</h3>
+                                    <span class="status-badge active"
+                                        >Active</span
+                                    >
+                                </div>
+                                <p>
+                                    A graphical frontend for the NTScan library.
+                                </p>
+                                <div class="project-footer">
+                                    <div class="project-tech">
+                                        <span class="tech-tag">C#</span>
+                                        <span class="tech-tag">GUI</span>
+                                        <span class="tech-tag">Windows</span>
+                                    </div>
+                                    <span class="proj-arrow">→</span>
+                                </div>
+                            </a>
+
+                            <a
+                                href="https://github.com/nesuwu/llo"
+                                target="_blank"
+                                class="project-card"
+                            >
+                                <div class="project-header">
+                                    <h3>LLO</h3>
+                                    <span class="status-badge active"
+                                        >Active</span
+                                    >
+                                </div>
+                                <p>
+                                    A Minecraft mod that shows light levels in
+                                    an intuitive way.
+                                </p>
+                                <div class="project-footer">
+                                    <div class="project-tech">
+                                        <span class="tech-tag">Java</span>
+                                        <span class="tech-tag">Minecraft</span>
+                                        <span class="tech-tag">NeoForge</span>
+                                    </div>
+                                    <span class="proj-arrow">→</span>
+                                </div>
+                            </a>
+
+                            <a
+                                href="https://github.com/nesuwu/Kity"
+                                target="_blank"
+                                class="project-card"
+                            >
+                                <div class="project-header">
+                                    <h3>Kity</h3>
+                                    <span class="status-badge maybe"
+                                        >Active-ish(?)</span
+                                    >
+                                </div>
+                                <p>
+                                    The portable sister of Cathy. A small mobile
+                                    catbox.moe client.
+                                </p>
+                                <div class="project-footer">
+                                    <div class="project-tech">
+                                        <span class="tech-tag">Kotlin</span>
+                                        <span class="tech-tag">Android</span>
+                                    </div>
+                                    <span class="proj-arrow">→</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="projects-category">
+                        <span class="cat-label">// deprecated / archived</span>
+                        <div class="projects-grid faded">
+                            <a
+                                href="https://github.com/nesuwu/Cathy-Electron"
+                                class="project-card deprecated"
+                            >
+                                <div class="project-header">
+                                    <h3>Cathy Electron</h3>
+                                    <span class="status-badge dep"
+                                        >Deprecated</span
+                                    >
+                                </div>
+                                <p>
+                                    A file upload client for catbox.moe made in
+                                    Electron.
+                                </p>
+                                <div class="project-footer">
+                                    <div class="project-tech">
+                                        <span class="tech-tag">Electron</span>
+                                        <span class="tech-tag">JavaScript</span>
+                                    </div>
+                                    <span class="proj-arrow">→</span>
+                                </div>
+                            </a>
+
+                            <a
+                                href="https://github.com/nesuwu/RustyTaskManager"
+                                class="project-card deprecated"
+                            >
+                                <div class="project-header">
+                                    <h3>Rusty Task Manager</h3>
+                                    <span class="status-badge dep"
+                                        >Deprecated</span
+                                    >
+                                </div>
+                                <p>
+                                    A simple task manager built in Rust. My CS
+                                    final project.
+                                </p>
+                                <div class="project-footer">
+                                    <div class="project-tech">
+                                        <span class="tech-tag">Rust</span>
+                                        <span class="tech-tag">TUI</span>
+                                    </div>
+                                    <span class="proj-arrow">→</span>
+                                </div>
+                            </a>
+
+                            <a
+                                href="https://github.com/nesuwu/SQuestL"
+                                target="_blank"
+                                class="project-card deprecated"
+                            >
+                                <div class="project-header">
+                                    <h3>SQuestL</h3>
+                                    <span class="status-badge dep"
+                                        >Deprecated</span
+                                    >
+                                </div>
+                                <p>
+                                    Just another CS final project. A TUI game
+                                    using the Ink library.
+                                </p>
+                                <div class="project-footer">
+                                    <div class="project-tech">
+                                        <span class="tech-tag">JavaScript</span>
+                                        <span class="tech-tag">TUI</span>
+                                    </div>
+                                    <span class="proj-arrow">→</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer id="contact" class="footer">
+                <div class="footer-inner">
+                    <div class="footer-left">
+                        <span class="footer-logo"
+                            >nesu<span class="accent">.</span></span
+                        >
+                        <p class="footer-tagline">
+                            building low-level stuff that definitely didn't need
+                            to exist.
+                        </p>
+                    </div>
+                    <div class="footer-right">
+                        <a
+                            href="mailto:nesudev@protonmail.com"
+                            class="contact-link"
+                        >
+                            <i class="fas fa-envelope"></i>
+                            <span>nesudev@protonmail.com</span>
+                        </a>
+                        <a
+                            href="https://github.com/nesuwu"
+                            target="_blank"
+                            class="contact-link"
+                        >
+                            <i class="fab fa-github"></i>
+                            <span>github/nesuwu</span>
+                        </a>
+                    </div>
+                </div>
+                <p class="copyright">made with 💖 by Nesu :3</p>
+            </footer>
+        </main>
+        <script src="scripts.js" defer></script>
+    </body>
 </html>
